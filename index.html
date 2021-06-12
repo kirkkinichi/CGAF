@@ -79,8 +79,8 @@
 
         	
             //Kill Box
-            var killBox = BABYLON.MeshBuilder.CreateBox("killBox", {width:100, depth:100, height:0.5}, scene);
-            killBox.position = new BABYLON.Vector3(0,-50,0);
+            var killBox = BABYLON.MeshBuilder.CreateBox("killBox", {width:500, depth:500, height:0.5}, scene);
+            killBox.position = new BABYLON.Vector3(0,-100,0);
             killBox.visibility = 0;
         	
         	
@@ -88,6 +88,51 @@
             box.physicsImpostor = new BABYLON.PhysicsImpostor(box, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
         	box2.physicsImpostor = new BABYLON.PhysicsImpostor(box2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
         	torus.physicsImpostor = new BABYLON.PhysicsImpostor(torus, BABYLON.PhysicsImpostor.MeshImpostor, { mass: 0, restitution: 0.9 }, scene);
+
+            // INICIO PARTICULAS
+            var particleSystem = new BABYLON.ParticleSystem("particles", 2000, scene);
+
+            particleSystem.particleTexture = new BABYLON.Texture("/textures/flare.png", scene);
+
+            // Origem Partículas
+            particleSystem.emitter = torus; // the starting object, the emitter
+            particleSystem.minEmitBox = new BABYLON.Vector3(-1, 0, 0); // Starting all from
+            particleSystem.maxEmitBox = new BABYLON.Vector3(1, 0, 0); // To...
+
+            // Cor das Partículas
+            particleSystem.color1 = new BABYLON.Color4(0.7, 0.8, 1.0, 1.0);
+            particleSystem.color2 = new BABYLON.Color4(0.2, 0.5, 1.0, 1.0);
+            particleSystem.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0);
+
+            particleSystem.minSize = 0.1;
+            particleSystem.maxSize = 0.5;
+
+            // Tempo de vida Partículas
+            particleSystem.minLifeTime = 0.3;
+            particleSystem.maxLifeTime = 1.5;
+
+            particleSystem.emitRate = 1500;
+
+            particleSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+
+            particleSystem.gravity = new BABYLON.Vector3(0, -9.81, 0);
+
+            // Direção Partículas
+            particleSystem.direction1 = new BABYLON.Vector3(5, 5, 5);
+            particleSystem.direction2 = new BABYLON.Vector3(-5, -5, -5);
+            
+            particleSystem.minAngularSpeed = 0;
+            particleSystem.maxAngularSpeed = Math.PI;
+
+            // Velocidade Partículas
+            particleSystem.minEmitPower = 1;
+            particleSystem.maxEmitPower = 3;
+            particleSystem.updateSpeed = 0.005;
+
+            particleSystem.isLocal = true;
+
+            particleSystem.start();
+            //FIM PARTÍCULAS
             
         
             return scene;
