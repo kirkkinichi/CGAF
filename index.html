@@ -49,15 +49,9 @@
         
             // This creates a basic Babylon Scene object (non-mesh)
             var scene = new BABYLON.Scene(engine);
-        
-            // This creates and positions a free camera (non-mesh)
-            var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), scene);
-        
-            // This targets the camera to scene origin
-            camera.setTarget(BABYLON.Vector3.Zero());
-        
-            // This attaches the camera to the canvas
-            camera.attachControl(canvas, true);
+            scene.enablePhysics();
+            var camera = new BABYLON.ArcRotateCamera("Camera", BABYLON.Tools.ToRadians(-120), BABYLON.Tools.ToRadians(80), 150, new BABYLON.Vector3(0, 0, 0), scene);
+            camera.attachControl(canvas, false);
         
             // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
             var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
@@ -65,20 +59,30 @@
             // Default intensity is 1. Let's dim the light a small amount
             light.intensity = 0.7;
         
-            // Our built-in 'sphere' shape. Params: name, subdivs, size, scene
-            var sphere = BABYLON.Mesh.CreateSphere("sphere1", 16, 2, scene);
-        
-            // Move the sphere upward 1/2 its height
-            sphere.position.y = 2;
-        
-            // Our built-in 'ground' shape. Params: name, width, depth, subdivs, scene
-            var ground = BABYLON.Mesh.CreateGround("ground1", 6, 6, 2, scene);
-            ground.rotation.x = 0.1;
+            //Esferas
+            var sphere = BABYLON.Mesh.CreateSphere("sphere1", 10, 2, scene);
+            sphere.position = new BABYLON.Vector3(0,21,0);
+
+            //Box Normais
+            const box = BABYLON.MeshBuilder.CreateBox("box", {height: 1, width: 11, depth: 1});
+            box.position = new BABYLON.Vector3(-13,14.8,0);
+            
+
+            //Box Inclinados
+            const box2 = BABYLON.MeshBuilder.CreateBox("box2", {height: 1, width: 14, depth: 1});
+            box2.position = new BABYLON.Vector3(-1.7,18,0);
+            box2.rotation.z = 0.5;
+
         	
-        	scene.enablePhysics();
+            //Kill Box
+            var killBox = BABYLON.MeshBuilder.CreateBox("killBox", {width:100, depth:100, height:0.5}, scene);
+            killBox.position = new BABYLON.Vector3(0,-50,0);
+            killBox.visibility = 0;
+        	
         	
         	sphere.physicsImpostor = new BABYLON.PhysicsImpostor(sphere, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 0.9 }, scene);
-        	ground.physicsImpostor = new BABYLON.PhysicsImpostor(ground, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
+            box.physicsImpostor = new BABYLON.PhysicsImpostor(box, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
+        	box2.physicsImpostor = new BABYLON.PhysicsImpostor(box2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
         
             return scene;
         
