@@ -73,6 +73,10 @@
             box2.position = new BABYLON.Vector3(-1.7,18,0);
             box2.rotation.z = 0.5;
 
+            //Torus
+            var torus = BABYLON.Mesh.CreateTorus("torus", 8, 2, 30, scene, false);
+            torus.position = new BABYLON.Vector3(-28, 0,0);
+
         	
             //Kill Box
             var killBox = BABYLON.MeshBuilder.CreateBox("killBox", {width:100, depth:100, height:0.5}, scene);
@@ -83,6 +87,8 @@
         	sphere.physicsImpostor = new BABYLON.PhysicsImpostor(sphere, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 0.9 }, scene);
             box.physicsImpostor = new BABYLON.PhysicsImpostor(box, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
         	box2.physicsImpostor = new BABYLON.PhysicsImpostor(box2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
+        	torus.physicsImpostor = new BABYLON.PhysicsImpostor(torus, BABYLON.PhysicsImpostor.MeshImpostor, { mass: 0, restitution: 0.9 }, scene);
+            
         
             return scene;
         
