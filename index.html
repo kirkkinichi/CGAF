@@ -143,6 +143,15 @@
             particleSystem.start();
             //FIM PARTÍCULAS
             
+            // GUI
+            var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+            var instructions = new BABYLON.GUI.TextBlock();
+            instructions.text = "Nome: Kirk Kinichi Tomisaki Rodrigues da Silva - RA: 171277";
+            instructions.color = "white";
+            instructions.fontSize = 16;
+            instructions.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT
+            instructions.textVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM
+            advancedTexture.addControl(instructions);       
         
             return scene;
         

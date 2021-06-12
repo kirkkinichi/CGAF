@@ -1,1 +1,1 @@
-# CGAF
+# Computação Gráfica
