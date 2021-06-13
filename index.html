@@ -124,6 +124,33 @@
             var torus4 = BABYLON.Mesh.CreateTorus("torus4", 4.4, 2, 30, scene, false);
             torus4.position = new BABYLON.Vector3(-32, -6,0);
 
+            
+            //INICIO ESFERAS
+            var esferaCentro = BABYLON.Mesh.CreateSphere("esferaCentro", 0, 0, scene);
+        	esferaCentro.position = new BABYLON.Vector3(0, 0, 0);    
+            esferaCentro.visibility = 0;            
+            var esfera = BABYLON.Mesh.CreateSphere("esfera", 16, 1, scene);
+        	esfera.parent = esferaCentro;
+            var esfera2 = BABYLON.Mesh.CreateSphere("esfera2", 16, 1, scene);
+        	esfera2.parent = esferaCentro;
+            var esfera3 = BABYLON.Mesh.CreateSphere("esfera3", 16, 1, scene);
+        	esfera3.parent = esferaCentro;
+            var esfera4 = BABYLON.Mesh.CreateSphere("esfera4", 16, 1, scene);
+        	esfera4.parent = esferaCentro;
+            var esfera5 = BABYLON.Mesh.CreateSphere("esfera5", 16, 1, scene);
+        	esfera5.parent = esferaCentro;
+            var esfera6 = BABYLON.Mesh.CreateSphere("esfera6", 16, 1, scene);
+        	esfera6.parent = esferaCentro;
+            var esfera7 = BABYLON.Mesh.CreateSphere("esfera7", 16, 1, scene);
+        	esfera7.parent = esferaCentro;
+            var esfera8 = BABYLON.Mesh.CreateSphere("esfera8", 16, 1, scene);
+        	esfera8.parent = esferaCentro;
+            var esfera9 = BABYLON.Mesh.CreateSphere("esfera9", 16, 1, scene);
+        	esfera9.parent = esferaCentro;
+            var esfera10 = BABYLON.Mesh.CreateSphere("esfera10", 16, 1, scene);
+        	esfera10.parent = esferaCentro;
+            //FIM ESFERAS
+
         	
             //Kill Box
             var killBox = BABYLON.MeshBuilder.CreateBox("killBox", {width:500, depth:500, height:0.5}, scene);
@@ -187,8 +214,8 @@
             particleSystem.gravity = new BABYLON.Vector3(0, -9.81, 0);
 
             // Direção Partículas
-            particleSystem.direction1 = new BABYLON.Vector3(5, 5, 5);
-            particleSystem.direction2 = new BABYLON.Vector3(-5, -5, -5);
+            particleSystem.direction1 = new BABYLON.Vector3(5, 10, 5);
+            particleSystem.direction2 = new BABYLON.Vector3(-5, 0, -5);
             
             particleSystem.minAngularSpeed = 0;
             particleSystem.maxAngularSpeed = Math.PI;
@@ -212,6 +239,23 @@
             instructions.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT
             instructions.textVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM
             advancedTexture.addControl(instructions);       
+
+            // Animacao
+            var alpha = 0;
+            scene.beforeRender = function () {
+
+                esfera.position = new BABYLON.Vector3(esfera.parent.position.x-24, 6 * Math.sin(alpha)-30, 6 * Math.cos(alpha));   
+                esfera2.position = new BABYLON.Vector3(esfera2.parent.position.x-24, -6 * Math.sin(alpha)-30, -6 * Math.cos(alpha));     
+                esfera3.position = new BABYLON.Vector3(esfera3.parent.position.x-18, 6 * Math.sin(alpha)-30, 6 * Math.cos(alpha));   
+                esfera4.position = new BABYLON.Vector3(esfera4.parent.position.x-18, -6 * Math.sin(alpha)-30, -6 * Math.cos(alpha));                
+                esfera5.position = new BABYLON.Vector3(esfera5.parent.position.x-12, 6 * Math.sin(alpha)-30, 6 * Math.cos(alpha));   
+                esfera6.position = new BABYLON.Vector3(esfera6.parent.position.x-12, -6 * Math.sin(alpha)-30, -6 * Math.cos(alpha));                
+                esfera7.position = new BABYLON.Vector3(esfera7.parent.position.x-6, 6 * Math.sin(alpha)-30, 6 * Math.cos(alpha));   
+                esfera8.position = new BABYLON.Vector3(esfera8.parent.position.x-6, -6 * Math.sin(alpha)-30, -6 * Math.cos(alpha));                
+                esfera9.position = new BABYLON.Vector3(esfera9.parent.position.x, 6 * Math.sin(alpha)-30, 6 * Math.cos(alpha));   
+                esfera10.position = new BABYLON.Vector3(esfera10.parent.position.x, -6 * Math.sin(alpha)-30, -6 * Math.cos(alpha));                           
+        		alpha += 0.05;
+            };
             
 
             sphere.physicsImpostor = new BABYLON.PhysicsImpostor(sphere, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 0 }, scene);
