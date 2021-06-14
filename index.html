@@ -55,9 +55,9 @@
         
             // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
             var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
-        
-            // Default intensity is 1. Let's dim the light a small amount
             light.intensity = 0.7;
+            
+            var music = new BABYLON.Sound("Audio", "sounds/audio.mp3", scene, null, { loop: true, autoplay: true });
 
             var skybox = BABYLON.MeshBuilder.CreateBox("skyBox", {size:1000.0}, scene);
             var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
@@ -72,7 +72,7 @@
             var sphere = BABYLON.Mesh.CreateSphere("sphere", 10, 2, scene);
             sphere.position = new BABYLON.Vector3(0,21,0);
             var sphere2 = BABYLON.Mesh.CreateSphere("sphere2", 10, 2, scene);
-            sphere2.position = new BABYLON.Vector3(7.2,-16,0);            
+            sphere2.position = new BABYLON.Vector3(7,-16,0);            
             var sphere3 = BABYLON.Mesh.CreateSphere("sphere3", 10, 2, scene);
             sphere3.position = new BABYLON.Vector3(-30,-28.4,0);
 
@@ -328,13 +328,13 @@
         	torus2.physicsImpostor = new BABYLON.PhysicsImpostor(torus2, BABYLON.PhysicsImpostor.MeshImpostor, { mass: 0, restitution: 0 }, scene);            
         	torus3.physicsImpostor = new BABYLON.PhysicsImpostor(torus3, BABYLON.PhysicsImpostor.MeshImpostor, { mass: 0, restitution: 0 }, scene);          
         	torus4.physicsImpostor = new BABYLON.PhysicsImpostor(torus4, BABYLON.PhysicsImpostor.MeshImpostor, { mass: 0, restitution: 0 }, scene);         
-        	domino.physicsImpostor = new BABYLON.PhysicsImpostor(domino, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0.8, restitution: 1 }, scene);
-        	domino2.physicsImpostor = new BABYLON.PhysicsImpostor(domino2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 1, restitution: 1 }, scene);
-        	domino3.physicsImpostor = new BABYLON.PhysicsImpostor(domino3, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 1, restitution: 1 }, scene);
-        	domino4.physicsImpostor = new BABYLON.PhysicsImpostor(domino4, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 1, restitution: 1 }, scene);
-        	domino5.physicsImpostor = new BABYLON.PhysicsImpostor(domino5, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 1, restitution: 1 }, scene);
-        	domino6.physicsImpostor = new BABYLON.PhysicsImpostor(domino6, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 1, restitution: 1 }, scene);
-        	domino7.physicsImpostor = new BABYLON.PhysicsImpostor(domino7, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 1, restitution: 1 }, scene);
+        	domino.physicsImpostor = new BABYLON.PhysicsImpostor(domino, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 1, restitution: 0 }, scene);
+        	domino2.physicsImpostor = new BABYLON.PhysicsImpostor(domino2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 1, restitution: 0 }, scene);
+        	domino3.physicsImpostor = new BABYLON.PhysicsImpostor(domino3, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 1, restitution: 0 }, scene);
+        	domino4.physicsImpostor = new BABYLON.PhysicsImpostor(domino4, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 1, restitution: 0 }, scene);
+        	domino5.physicsImpostor = new BABYLON.PhysicsImpostor(domino5, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 1, restitution: 0 }, scene);
+        	domino6.physicsImpostor = new BABYLON.PhysicsImpostor(domino6, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 1, restitution: 0 }, scene);
+        	domino7.physicsImpostor = new BABYLON.PhysicsImpostor(domino7, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 1, restitution: 0 }, scene);
         	esfera11.physicsImpostor = new BABYLON.PhysicsImpostor(esfera11, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 0 }, scene);
             
             //obstaculo.physicsImpostor = new BABYLON.PhysicsImpostor(obstaculo, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0 }, scene);  
