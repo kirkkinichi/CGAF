@@ -72,7 +72,7 @@
             var transparente = new BABYLON.StandardMaterial("transparente", scene);
 	        transparente.alpha = 0.5;	
             var cianoMat = new BABYLON.StandardMaterial("cianoMat", scene);
-	        cianoMat.diffuseColor = new BABYLON.Color3(0, 1, 1);
+	        cianoMat.diffuseColor = new BABYLON.Color3(0, 2, 1.3);
 
             //Glow
             var gl = new BABYLON.GlowLayer("glow", scene);
@@ -81,8 +81,11 @@
                 if (mesh.name === "sphere") {
                     result.set(1, 0, 1, 1);
                 } 
+                else if (mesh.name === "esferaCentro" || mesh.name === "esfera") {
+                    result.set(0, 255, 161, 1);
+                }   
                 else if (mesh.name === "boxinclinado") {
-                    result.set(0, 243, 255, 1);
+                    result.set(0, 255, 161, 1);
                 }   
                 else {
                     result.set(0, 0, 0, 0);
@@ -103,8 +106,11 @@
             //Box Normais
             const box = BABYLON.MeshBuilder.CreateBox("boxinclinado", {height: 1, width: 11, depth: 1});
             box.position = new BABYLON.Vector3(-13,14.8,0);
+            box.material = cianoMat;
             const box4 = BABYLON.MeshBuilder.CreateBox("box4", {height: 1, width: 50, depth: 10});
-            box4.position = new BABYLON.Vector3(-15,-18,0);    
+            box4.position = new BABYLON.Vector3(-15,-18,0);                        
+            box4.material = new BABYLON.GridMaterial("chaoMat");  
+            box4.material.backFaceCulling = false;              
             const box5 = BABYLON.MeshBuilder.CreateBox("box5", {height: 1, width: 8, depth: 1.8});
             box5.position = new BABYLON.Vector3(6,-17,2);                
             box5.material = transparente;  
@@ -112,16 +118,22 @@
             box6.position = new BABYLON.Vector3(6,-17,-2);  
             box6.material = transparente;  
             const box8 = BABYLON.MeshBuilder.CreateBox("box8", {height: 1, width: 40, depth: 1.8});
-            box8.position = new BABYLON.Vector3(-12,-30,0);              
+            box8.position = new BABYLON.Vector3(-12,-30,0);
+            box8.material = new BABYLON.GridMaterial("chaoMat");  
+            box8.material.backFaceCulling = false;                 
             const box9 = BABYLON.MeshBuilder.CreateBox("box9", {height: 14, width: 14, depth: 1});
             box9.position = new BABYLON.Vector3(-31,-38.5,-18); 
             box9.material = transparente;
             const box13 = BABYLON.MeshBuilder.CreateBox("box13", {height: 1, width: 40, depth: 4});
-            box13.position = new BABYLON.Vector3(-12,-45,-16.5);                       
+            box13.position = new BABYLON.Vector3(-12,-45,-16.5);                   
+            box13.material = new BABYLON.GridMaterial("chaoMat");  
+            box13.material.backFaceCulling = false;                    
             const box14 = BABYLON.MeshBuilder.CreateBox("box14", {height: 6, width: 14, depth: 1});
-            box14.position = new BABYLON.Vector3(-31,-42.5,-15.2);             
+            box14.position = new BABYLON.Vector3(-31,-42.5,-15.2);  
+            box14.material = transparente; 
             const box18 = BABYLON.MeshBuilder.CreateBox("boxinclinado", {height: 1, width: 15, depth: 1});
-            box18.position = new BABYLON.Vector3(-3,-53,-16.5);               
+            box18.position = new BABYLON.Vector3(-3,-53,-16.5);   
+            box18.material = cianoMat;            
             const box19 = BABYLON.MeshBuilder.CreateBox("boxparede", {height: 2, width: 15, depth: 0.5});
             box19.position = new BABYLON.Vector3(-3,-53,-15.5);            
             box19.material = transparente;   
@@ -129,33 +141,41 @@
             box20.position = new BABYLON.Vector3(-3,-53,-17.5);
             box20.material = transparente;     
             const box22 = BABYLON.MeshBuilder.CreateBox("box22", {height: 1, width: 40, depth: 4});
-            box22.position = new BABYLON.Vector3(0,-83,-16.5);              
-                    
+            box22.position = new BABYLON.Vector3(0,-83,-16.5);          
+            box22.material = new BABYLON.GridMaterial("chaoMat");  
+            box22.material.backFaceCulling = false;
             
 
             //Box Inclinados
             const box2 = BABYLON.MeshBuilder.CreateBox("boxinclinado", {height: 1, width: 14, depth: 1});
             box2.position = new BABYLON.Vector3(-1.7,18,0);
             box2.rotation.z = 0.5;
+            box2.material = cianoMat;
             const box3 = BABYLON.MeshBuilder.CreateBox("boxinclinado", {height: 1, width: 14, depth: 1});
             box3.position = new BABYLON.Vector3(-28,-14,0);
             box3.rotation.z = -0.5;
+            box3.material = cianoMat;
             const box7 = BABYLON.MeshBuilder.CreateBox("boxinclinado", {height: 1, width: 14, depth: 1});
             box7.position = new BABYLON.Vector3(10,-25,0);
             box7.rotation.z = 0.8;
-            const box10 = BABYLON.MeshBuilder.CreateBox("boxpiso", {height: 1, width: 5, depth: 14});
+            box7.material = cianoMat;
+            const box10 = BABYLON.MeshBuilder.CreateBox("box10", {height: 1, width: 5, depth: 14});
             box10.position = new BABYLON.Vector3(-33,-32,-5.8);
-            box10.rotation.x = 6;            
+            box10.rotation.x = 6;                              
+            box10.material = new BABYLON.GridMaterial("chaoMat");  
+            box10.material.backFaceCulling = false;              
             const box11 = BABYLON.MeshBuilder.CreateBox("boxparede", {height: 4, width: 1, depth: 15});
             box11.position = new BABYLON.Vector3(-36,-30.5,-5.8);
             box11.rotation.x = 6;  
             box11.material = transparente;         
             const box12 = BABYLON.MeshBuilder.CreateBox("boxinclinado", {height: 1, width: 13, depth: 3});
             box12.position = new BABYLON.Vector3(-33,-38,-17);            
-            box12.rotation.z = -0.8;            
+            box12.rotation.z = -0.8; 
+            box12.material = cianoMat;           
             const box15 = BABYLON.MeshBuilder.CreateBox("boxinclinado", {height: 1, width: 13, depth: 1});
             box15.position = new BABYLON.Vector3(10,-48,-16.5);            
             box15.rotation.z = 0.8;
+            box15.material = cianoMat;
             const box16 = BABYLON.MeshBuilder.CreateBox("boxparede", {height: 2, width: 13, depth: 0.5});
             box16.position = new BABYLON.Vector3(10,-48,-17.5);            
             box16.rotation.z = 0.8;
@@ -167,6 +187,7 @@
             const box21 = BABYLON.MeshBuilder.CreateBox("boxinclinado", {height: 1, width: 14, depth: 1});
             box21.position = new BABYLON.Vector3(-13,-78,-16.5);
             box21.rotation.z = -0.8;
+            box21.material = cianoMat;
             
 
 
@@ -215,25 +236,35 @@
         	esferaCentro.position = new BABYLON.Vector3(0, 0, 0);    
             esferaCentro.visibility = 0;            
             var esfera = BABYLON.Mesh.CreateSphere("esfera", 16, 1, scene);
-        	esfera.parent = esferaCentro;
-            var esfera2 = BABYLON.Mesh.CreateSphere("esfera2", 16, 1, scene);
-        	esfera2.parent = esferaCentro;
-            var esfera3 = BABYLON.Mesh.CreateSphere("esfera3", 16, 1, scene);
-        	esfera3.parent = esferaCentro;
-            var esfera4 = BABYLON.Mesh.CreateSphere("esfera4", 16, 1, scene);
-        	esfera4.parent = esferaCentro;
-            var esfera5 = BABYLON.Mesh.CreateSphere("esfera5", 16, 1, scene);
-        	esfera5.parent = esferaCentro;
-            var esfera6 = BABYLON.Mesh.CreateSphere("esfera6", 16, 1, scene);
-        	esfera6.parent = esferaCentro;
-            var esfera7 = BABYLON.Mesh.CreateSphere("esfera7", 16, 1, scene);
-        	esfera7.parent = esferaCentro;
-            var esfera8 = BABYLON.Mesh.CreateSphere("esfera8", 16, 1, scene);
-        	esfera8.parent = esferaCentro;
-            var esfera9 = BABYLON.Mesh.CreateSphere("esfera9", 16, 1, scene);
-        	esfera9.parent = esferaCentro;
-            var esfera10 = BABYLON.Mesh.CreateSphere("esfera10", 16, 1, scene);
-        	esfera10.parent = esferaCentro;
+        	esfera.parent = esferaCentro;            
+            esfera.material = cianoMat;
+            var esfera2 = BABYLON.Mesh.CreateSphere("esfera", 16, 1, scene);
+        	esfera2.parent = esferaCentro;          
+            esfera2.material = cianoMat;
+            var esfera3 = BABYLON.Mesh.CreateSphere("esfera", 16, 1, scene);
+        	esfera3.parent = esferaCentro;          
+            esfera3.material = cianoMat;
+            var esfera4 = BABYLON.Mesh.CreateSphere("esfera", 16, 1, scene);
+        	esfera4.parent = esferaCentro;          
+            esfera4.material = cianoMat;
+            var esfera5 = BABYLON.Mesh.CreateSphere("esfera", 16, 1, scene);
+        	esfera5.parent = esferaCentro;          
+            esfera5.material = cianoMat;
+            var esfera6 = BABYLON.Mesh.CreateSphere("esfera", 16, 1, scene);
+        	esfera6.parent = esferaCentro;          
+            esfera6.material = cianoMat;
+            var esfera7 = BABYLON.Mesh.CreateSphere("esfera", 16, 1, scene);
+        	esfera7.parent = esferaCentro;          
+            esfera7.material = cianoMat;
+            var esfera8 = BABYLON.Mesh.CreateSphere("esfera", 16, 1, scene);
+        	esfera8.parent = esferaCentro;          
+            esfera8.material = cianoMat;
+            var esfera9 = BABYLON.Mesh.CreateSphere("esfera", 16, 1, scene);
+        	esfera9.parent = esferaCentro;          
+            esfera9.material = cianoMat;
+            var esfera10 = BABYLON.Mesh.CreateSphere("esfera", 16, 1, scene);
+        	esfera10.parent = esferaCentro;          
+            esfera10.material = cianoMat;
             
             var esfera11 = BABYLON.Mesh.CreateSphere("esfera11", 10, 2, scene);
             esfera11.position = new BABYLON.Vector3(-8,-51.25,-16.5);
