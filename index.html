@@ -634,8 +634,7 @@
             obstaculo2.physicsImpostor = new BABYLON.PhysicsImpostor(obstaculo2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 1, restitution: 0.1 }, scene); 
             cesta.physicsImpostor = new BABYLON.PhysicsImpostor(cesta, BABYLON.PhysicsImpostor.CylinderImpostor, { mass: 0, restitution: 0 }, scene);             
             aro.physicsImpostor = new BABYLON.PhysicsImpostor(aro, BABYLON.PhysicsImpostor.MeshImpostor, { mass: 0, restitution: 0 }, scene); 
-            // gear.physicsImpostor = new BABYLON.PhysicsImpostor(gear, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0 }, scene);  
-            // gear2.physicsImpostor = new BABYLON.PhysicsImpostor(gear2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0 }, scene);   
+        	head.physicsImpostor = new BABYLON.PhysicsImpostor(head, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0 }, scene);
         
             return scene;
         
