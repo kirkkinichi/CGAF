@@ -187,6 +187,10 @@
             box25.position = new BABYLON.Vector3(69.5,-98,-16.5);          
             box25.material = new BABYLON.GridMaterial("chaoMat");  
             box25.material.backFaceCulling = false;
+            const box26 = BABYLON.MeshBuilder.CreateBox("box26", {height: 1, width: 60, depth: 4});
+            box26.position = new BABYLON.Vector3(0,-112,-16.5);          
+            box26.material = new BABYLON.GridMaterial("chaoMat");  
+            box26.material.backFaceCulling = false;
             
 
             //Box Inclinados
@@ -259,6 +263,28 @@
             const obstaculo2 = BABYLON.MeshBuilder.CreateBox("obstaculo", {height: 4, width: 4, depth: 4});
             obstaculo2.material = new BABYLON.GridMaterial("chaoMat");  
             obstaculo2.material.backFaceCulling = false;
+
+
+
+            let barrel = BABYLON.MeshBuilder.CreateCylinder("barrel", {height: 3, diameter: 2, tessellation: 96}, scene);
+            barrel.position = new BABYLON.Vector3(-29.5, -110, -16.5);
+    
+
+            BABYLON.SceneLoader.ImportMesh(
+                "",
+                "https://models.babylonjs.com/",
+                "ExplodingBarrel.glb",
+                scene,
+                function (meshes) {          
+                    const root = meshes.find(function (mesh) {return mesh.name === "__root__"});
+                    root.parent = barrel;
+                    root.scaling = new BABYLON.Vector3(0.05, 0.05, 0.05);
+                    root.position = new BABYLON.Vector3(0, -1.5, 0);
+
+                    root.physicsImpostor = new BABYLON.PhysicsImpostor(root, BABYLON.PhysicsImpostor.CylinderImpostor, { mass: 1, restitution: 0.1 }, scene);
+                    barrel.physicsImpostor = new BABYLON.PhysicsImpostor(barrel, BABYLON.PhysicsImpostor.CylinderImpostor, { mass: 1, restitution: 0.1 }, scene);
+                }
+            );
 
             // GEAR
             const gear = BABYLON.MeshBuilder.CreateBox("gear", {height: 16, width: 1, depth: 3});
@@ -486,7 +512,8 @@
         	box22.physicsImpostor = new BABYLON.PhysicsImpostor(box22, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene); 
         	box23.physicsImpostor = new BABYLON.PhysicsImpostor(box23, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene); 
         	box24.physicsImpostor = new BABYLON.PhysicsImpostor(box24, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene); 
-        	box25.physicsImpostor = new BABYLON.PhysicsImpostor(box25, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
+        	box25.physicsImpostor = new BABYLON.PhysicsImpostor(box25, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene); 
+        	box26.physicsImpostor = new BABYLON.PhysicsImpostor(box26, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene); 
         	torus.physicsImpostor = new BABYLON.PhysicsImpostor(torus, BABYLON.PhysicsImpostor.MeshImpostor, { mass: 0, restitution: 0 }, scene);            
         	torus2.physicsImpostor = new BABYLON.PhysicsImpostor(torus2, BABYLON.PhysicsImpostor.MeshImpostor, { mass: 0, restitution: 0 }, scene);            
         	torus3.physicsImpostor = new BABYLON.PhysicsImpostor(torus3, BABYLON.PhysicsImpostor.MeshImpostor, { mass: 0, restitution: 0 }, scene);          
