@@ -151,6 +151,12 @@
             // OBSTÁCULOS
             const obstaculo = BABYLON.MeshBuilder.CreateBox("obstaculo", {height: 4, width: 4, depth: 4});
 
+            // GEAR
+            const gear = BABYLON.MeshBuilder.CreateBox("gear", {height: 16, width: 1, depth: 3});
+            const gear2 = BABYLON.MeshBuilder.CreateBox("gear2", {height: 1, width: 16, depth: 3});
+            const gear3 = BABYLON.MeshBuilder.CreateBox("gear3", {height: 16, width: 1, depth: 3});
+            const gear4 = BABYLON.MeshBuilder.CreateBox("gear4", {height: 1, width: 16, depth: 3});
+
             //Torus
             var torus = BABYLON.Mesh.CreateTorus("torus", 10, 2, 30, scene, false);
             torus.position = new BABYLON.Vector3(-32, 0,0);
@@ -293,8 +299,7 @@
             advancedTexture.addControl(instructions);       
 
             // Animacao
-            var alpha = 0;
-            var beta = 0;
+            var alpha = 0; var beta = 0; var charlie = 0; var delta = 0;
             scene.beforeRender = function () {
 
                 esfera.position = new BABYLON.Vector3(esfera.parent.position.x-24, 6 * Math.sin(alpha)-30, 6 * Math.cos(alpha));   
@@ -308,8 +313,15 @@
                 esfera9.position = new BABYLON.Vector3(esfera9.parent.position.x, 6 * Math.sin(alpha)-30, 6 * Math.cos(alpha));   
                 esfera10.position = new BABYLON.Vector3(esfera10.parent.position.x, -6 * Math.sin(alpha)-30, -6 * Math.cos(alpha));     
                 obstaculo.position = new BABYLON.Vector3(-10,-3 * Math.sin(beta)-39.5,-16.5);
-        		alpha += 0.05;
-                beta += 0.010;
+                gear.position = new BABYLON.Vector3(-24,-65,-16.5);
+                gear.rotation.z = charlie;
+                gear2.position = new BABYLON.Vector3(-24,-65,-16.5);
+                gear2.rotation.z = charlie;
+                gear3.position = new BABYLON.Vector3(-4.5,-65,-16.5);
+                gear3.rotation.z = delta;
+                gear4.position = new BABYLON.Vector3(-4.5,-65,-16.5);
+                gear4.rotation.z = delta;
+        		alpha += 0.05; beta += 0.010; charlie += 0.007; delta -= 0.007;
             };
             
 
@@ -355,7 +367,9 @@
             esfera16.physicsImpostor = new BABYLON.PhysicsImpostor(esfera16, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 0.8 }, scene);
             esfera17.physicsImpostor = new BABYLON.PhysicsImpostor(esfera17, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 0 }, scene);
             
-            //obstaculo.physicsImpostor = new BABYLON.PhysicsImpostor(obstaculo, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0 }, scene);  
+            //obstaculo.physicsImpostor = new BABYLON.PhysicsImpostor(obstaculo, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0 }, scene); 
+            // gear.physicsImpostor = new BABYLON.PhysicsImpostor(gear, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0 }, scene);  
+            // gear2.physicsImpostor = new BABYLON.PhysicsImpostor(gear2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0 }, scene);   
         
             return scene;
         
