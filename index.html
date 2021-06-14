@@ -72,10 +72,14 @@
 	        transparente.alpha = 0.5;	
             var cianoMat = new BABYLON.StandardMaterial("cianoMat", scene);
 	        cianoMat.diffuseColor = new BABYLON.Color3(0, 2, 1.3);
+            var redMat = new BABYLON.StandardMaterial("redMat", scene);
+	        redMat.diffuseColor = new BABYLON.Color3(1, 0, 0);
             var pinkMat = new BABYLON.StandardMaterial("pinkMat", scene);
 	        pinkMat.diffuseColor = new BABYLON.Color3(2, 0, 1);
             var blueMat = new BABYLON.StandardMaterial("blueMat", scene);
 	        blueMat.diffuseColor = new BABYLON.Color3(0, 0, 1);
+            var yellowMat = new BABYLON.StandardMaterial("yellowMat", scene);
+	        yellowMat.diffuseColor = new BABYLON.Color3(255, 255, 0);
             var blackMat = new BABYLON.StandardMaterial("blackMat", scene);
 	        blackMat.diffuseColor = new BABYLON.Color3(0, 0, 0);
 
@@ -191,6 +195,23 @@
             box26.position = new BABYLON.Vector3(0,-112,-16.5);          
             box26.material = new BABYLON.GridMaterial("chaoMat");  
             box26.material.backFaceCulling = false;
+            const box27 = BABYLON.MeshBuilder.CreateBox("box27", {height: 1, width: 30, depth: 4});
+            box27.position = new BABYLON.Vector3(-30,-155,-16.5);          
+            box27.material = new BABYLON.GridMaterial("chaoMat");  
+            box27.material.backFaceCulling = false;
+            const box28 = BABYLON.MeshBuilder.CreateBox("box28", {height: 1, width: 20, depth: 2});
+            box28.position = new BABYLON.Vector3(-30,-148.5,-16.5);            
+            box28.rotation.z = 0.5;          
+            box28.material = new BABYLON.GridMaterial("chaoMat");  
+            box28.material.backFaceCulling = false;
+            const box29 = BABYLON.MeshBuilder.CreateBox("box29", {height: 5, width: 1, depth: 1});
+            box29.position = new BABYLON.Vector3(-30,-152,-16.5); 
+            box29.material = new BABYLON.GridMaterial("chaoMat");  
+            box29.material.backFaceCulling = false;            
+            const box31 = BABYLON.MeshBuilder.CreateBox("box31", {height: 3, width: 1, depth: 1});
+            box31.position = new BABYLON.Vector3(-19,-153,-16.5);
+            box31.material = new BABYLON.GridMaterial("chaoMat");  
+            box31.material.backFaceCulling = false;
             
 
             //Box Inclinados
@@ -239,7 +260,10 @@
             box23.position = new BABYLON.Vector3(25,-89.5,-16.5);
             box23.rotation.z = -0.8;
             box23.material = cianoMat;
-            
+            const box30 = BABYLON.MeshBuilder.CreateBox("boxinclinado", {height: 1, width: 14, depth: 1});
+            box30.position = new BABYLON.Vector3(25,-106,-16.5);
+            box30.rotation.z = 0.8;
+            box30.material = cianoMat;
 
 
             //Dominó
@@ -247,18 +271,14 @@
             var texture2 = new BABYLON.Texture("textures/letras.jpeg", scene);
             mat2.diffuseTexture = texture2;
 
-            var columns = 6;  // 6 columns
-            var rows = 1;  // 1 row
-
-            //alien sprite
+            var columns = 6;
+            var rows = 1;
             var faceUV = new Array(6);
 
-            //set all faces to same
             for (var i = 0; i < 6; i++) {
                 faceUV[i] = new BABYLON.Vector4(i / columns, 0, (i + 1) / columns, 1 / rows);
             }
 
-            //wrap set and top and bottom faces rotated
             var options = {
                 faceUV: faceUV,
                 wrap: true,
@@ -327,11 +347,13 @@
             obstaculo.material = new BABYLON.GridMaterial("chaoMat");  
             obstaculo.material.backFaceCulling = false;
 
-
+            const obstaculo2 = BABYLON.MeshBuilder.CreateBox("obstaculo2", {height: 2, width: 2, depth: 2});
+            obstaculo2.material = yellowMat;
+            obstaculo2.position = new BABYLON.Vector3(-24,-142.5,-16.5);
+            obstaculo2.material.backFaceCulling = false;
 
             let barrel = BABYLON.MeshBuilder.CreateCylinder("barrel", {height: 3, diameter: 2, tessellation: 96}, scene);
-            barrel.position = new BABYLON.Vector3(-29.5, -110, -16.5);
-    
+            barrel.position = new BABYLON.Vector3(-29.75, -110, -16.5);    
 
             BABYLON.SceneLoader.ImportMesh(
                 "",
@@ -348,6 +370,14 @@
                     barrel.physicsImpostor = new BABYLON.PhysicsImpostor(barrel, BABYLON.PhysicsImpostor.CylinderImpostor, { mass: 1, restitution: 0.1 }, scene);
                 }
             );
+
+            const cesta = BABYLON.MeshBuilder.CreateCylinder("cesta", {diameterTop: 15, diameter: 10});            
+            cesta.position = new BABYLON.Vector3(-3, -170, -16.5);       
+            cesta.material = redMat; 
+            var aro = BABYLON.Mesh.CreateTorus("aro", 15, 1, 30, scene, false);
+            aro.position = new BABYLON.Vector3(-3, -168, -16.5);    
+            aro.material = redMat;
+
 
             // GEAR
             const gear = BABYLON.MeshBuilder.CreateBox("gear", {height: 16, width: 1, depth: 3});
@@ -470,30 +500,30 @@
             particleSystem.particleTexture = new BABYLON.Texture("/textures/flare.png", scene);
 
             // Origem Partículas
-            particleSystem.emitter = torus; // the starting object, the emitter
+            particleSystem.emitter = cesta; // the starting object, the emitter
             particleSystem.minEmitBox = new BABYLON.Vector3(-1, 0, 0); // Starting all from
             particleSystem.maxEmitBox = new BABYLON.Vector3(1, 0, 0); // To...
 
             // Cor das Partículas
-            particleSystem.color1 = new BABYLON.Color4(0.7, 0.8, 1.0, 1.0);
-            particleSystem.color2 = new BABYLON.Color4(0.2, 0.5, 1.0, 1.0);
+            particleSystem.color1 = new BABYLON.Color4(1, 0.8, 1.0, 1.0);
+            particleSystem.color2 = new BABYLON.Color4(1, 0.5, 1.0, 1.0);
             particleSystem.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0);
 
-            particleSystem.minSize = 0.1;
-            particleSystem.maxSize = 0.5;
+            particleSystem.minSize = 0.5;
+            particleSystem.maxSize = 0.9;
 
             // Tempo de vida Partículas
             particleSystem.minLifeTime = 0.3;
             particleSystem.maxLifeTime = 1.5;
 
-            particleSystem.emitRate = 1500;
+            particleSystem.emitRate = 2000;
 
             particleSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
 
-            particleSystem.gravity = new BABYLON.Vector3(0, -9.81, 0);
+            particleSystem.gravity = new BABYLON.Vector3(0, 0, 0);
 
             // Direção Partículas
-            particleSystem.direction1 = new BABYLON.Vector3(5, 10, 5);
+            particleSystem.direction1 = new BABYLON.Vector3(5, 20, 5);
             particleSystem.direction2 = new BABYLON.Vector3(-5, 0, -5);
             
             particleSystem.minAngularSpeed = 0;
@@ -576,7 +606,12 @@
         	box23.physicsImpostor = new BABYLON.PhysicsImpostor(box23, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene); 
         	box24.physicsImpostor = new BABYLON.PhysicsImpostor(box24, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene); 
         	box25.physicsImpostor = new BABYLON.PhysicsImpostor(box25, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene); 
-        	box26.physicsImpostor = new BABYLON.PhysicsImpostor(box26, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene); 
+        	box26.physicsImpostor = new BABYLON.PhysicsImpostor(box26, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);  
+        	box27.physicsImpostor = new BABYLON.PhysicsImpostor(box27, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene); 
+        	box28.physicsImpostor = new BABYLON.PhysicsImpostor(box28, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 1, restitution: 0 }, scene); 
+        	box29.physicsImpostor = new BABYLON.PhysicsImpostor(box29, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
+        	box30.physicsImpostor = new BABYLON.PhysicsImpostor(box30, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
+        	box31.physicsImpostor = new BABYLON.PhysicsImpostor(box31, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
         	torus.physicsImpostor = new BABYLON.PhysicsImpostor(torus, BABYLON.PhysicsImpostor.MeshImpostor, { mass: 0, restitution: 0 }, scene);            
         	torus2.physicsImpostor = new BABYLON.PhysicsImpostor(torus2, BABYLON.PhysicsImpostor.MeshImpostor, { mass: 0, restitution: 0 }, scene);            
         	torus3.physicsImpostor = new BABYLON.PhysicsImpostor(torus3, BABYLON.PhysicsImpostor.MeshImpostor, { mass: 0, restitution: 0 }, scene);          
@@ -596,6 +631,9 @@
             esfera16.physicsImpostor = new BABYLON.PhysicsImpostor(esfera16, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 0.8 }, scene);
             esfera17.physicsImpostor = new BABYLON.PhysicsImpostor(esfera17, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 0 }, scene);
             obstaculo.physicsImpostor = new BABYLON.PhysicsImpostor(obstaculo, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0 }, scene); 
+            obstaculo2.physicsImpostor = new BABYLON.PhysicsImpostor(obstaculo2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 1, restitution: 0.1 }, scene); 
+            cesta.physicsImpostor = new BABYLON.PhysicsImpostor(cesta, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0 }, scene);             
+            aro.physicsImpostor = new BABYLON.PhysicsImpostor(aro, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0 }, scene); 
             // gear.physicsImpostor = new BABYLON.PhysicsImpostor(gear, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0 }, scene);  
             // gear2.physicsImpostor = new BABYLON.PhysicsImpostor(gear2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0 }, scene);   
         
