@@ -243,30 +243,67 @@
 
 
             //Dominó
-            const domino = BABYLON.MeshBuilder.CreateBox("domino", {height: 3, width: 0.35, depth: 2});
+            var mat2 = new BABYLON.StandardMaterial("mat2", scene);
+            var texture2 = new BABYLON.Texture("textures/letras.jpeg", scene);
+            mat2.diffuseTexture = texture2;
+
+            var columns = 6;  // 6 columns
+            var rows = 1;  // 1 row
+
+            //alien sprite
+            var faceUV = new Array(6);
+
+            //set all faces to same
+            for (var i = 0; i < 6; i++) {
+                faceUV[i] = new BABYLON.Vector4(i / columns, 0, (i + 1) / columns, 1 / rows);
+            }
+
+            //wrap set and top and bottom faces rotated
+            var options = {
+                faceUV: faceUV,
+                wrap: true,
+                topBaseAt: 0,
+                bottomBaseAt: 1,
+                height: 3,
+                width: 0.35,
+                depth: 2
+            };
+
+            var domino = BABYLON.MeshBuilder.CreateBox("domino", options, scene);
+            domino.material = mat2;
             domino.position = new BABYLON.Vector3(-15,-16,0);
-            const domino2 = BABYLON.MeshBuilder.CreateBox("domino2", {height: 3, width: 0.35, depth: 2});
+
+            var domino2 = BABYLON.MeshBuilder.CreateBox("domino2", options, scene);
+            domino2.material = mat2;
             domino2.position = new BABYLON.Vector3(-12,-16,0);
-            const domino3 = BABYLON.MeshBuilder.CreateBox("domino3", {height: 3, width: 0.35, depth: 2});
+
+            var domino3 = BABYLON.MeshBuilder.CreateBox("domino3", options, scene);
+            domino3.material = mat2;
             domino3.position = new BABYLON.Vector3(-9,-16,0);
-            const domino4 = BABYLON.MeshBuilder.CreateBox("domino4", {height: 3, width: 0.35, depth: 2});
+
+            var domino4 = BABYLON.MeshBuilder.CreateBox("domino4", options, scene);
+            domino4.material = mat2;
             domino4.position = new BABYLON.Vector3(-6,-16,0);
-            const domino5 = BABYLON.MeshBuilder.CreateBox("domino5", {height: 3, width: 0.35, depth: 2});
+
+            var domino5 = BABYLON.MeshBuilder.CreateBox("domino5", options, scene);
+            domino5.material = mat2;
             domino5.position = new BABYLON.Vector3(-3,-16,0);
-            const domino6 = BABYLON.MeshBuilder.CreateBox("domino6", {height: 3, width: 0.35, depth: 2});
-            domino6.position = new BABYLON.Vector3(-0,-16,0);
-            const domino7 = BABYLON.MeshBuilder.CreateBox("domino7", {height: 3, width: 0.35, depth: 2});
+
+            var domino6 = BABYLON.MeshBuilder.CreateBox("domino6", options, scene);
+            domino6.material = mat2;
+            domino6.position = new BABYLON.Vector3(0,-16,0);
+
+            var domino7 = BABYLON.MeshBuilder.CreateBox("domino7", options, scene);
+            domino7.material = mat2;
             domino7.position = new BABYLON.Vector3(3,-16,0);
 
             // OBSTÁCULOS
-
             var mat = new BABYLON.StandardMaterial("mat", scene);
             var texture = new BABYLON.Texture("textures/cubo.jpeg", scene);
             mat.diffuseTexture = texture;
 
             var faceUV = new Array(6);
 
-            //set all faces
             faceUV[0] = new BABYLON.Vector4(0, 0.5, 1 / 3, 1);
             faceUV[1] = new BABYLON.Vector4(1 / 3, 0, 2 / 3, 0.5);
             faceUV[2] = new BABYLON.Vector4(2 / 3, 0, 1, 0.5);
@@ -274,7 +311,6 @@
             faceUV[4] = new BABYLON.Vector4(1 / 3, 0.5, 2 / 3, 1);
             faceUV[5] = new BABYLON.Vector4(2 /3, 0.5, 1, 1);
 
-            //wrap set
             var options = {
                 faceUV: faceUV,
                 wrap: true,
