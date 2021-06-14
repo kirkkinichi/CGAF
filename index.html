@@ -98,7 +98,9 @@
             const box19 = BABYLON.MeshBuilder.CreateBox("box19", {height: 2, width: 15, depth: 0.5});
             box19.position = new BABYLON.Vector3(-3,-53,-15.5);               
             const box20 = BABYLON.MeshBuilder.CreateBox("box20", {height: 2, width: 15, depth: 0.5});
-            box20.position = new BABYLON.Vector3(-3,-53,-17.5);                 
+            box20.position = new BABYLON.Vector3(-3,-53,-17.5);     
+            const box22 = BABYLON.MeshBuilder.CreateBox("box22", {height: 1, width: 40, depth: 4});
+            box22.position = new BABYLON.Vector3(0,-83,-16.5);              
                     
             
 
@@ -130,6 +132,10 @@
             const box17 = BABYLON.MeshBuilder.CreateBox("box17", {height: 2, width: 13, depth: 0.5});
             box17.position = new BABYLON.Vector3(10,-48,-15.5);            
             box17.rotation.z = 0.8;
+            const box21 = BABYLON.MeshBuilder.CreateBox("box21", {height: 1, width: 14, depth: 1});
+            box21.position = new BABYLON.Vector3(-13,-78,-16.5);
+            box21.rotation.z = -0.8;
+            
 
 
             //Dominó
@@ -347,7 +353,9 @@
         	box17.physicsImpostor = new BABYLON.PhysicsImpostor(box17, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);    
         	box18.physicsImpostor = new BABYLON.PhysicsImpostor(box18, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);    
         	box19.physicsImpostor = new BABYLON.PhysicsImpostor(box19, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);    
-        	box20.physicsImpostor = new BABYLON.PhysicsImpostor(box20, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene); 
+        	box20.physicsImpostor = new BABYLON.PhysicsImpostor(box20, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);    
+        	box21.physicsImpostor = new BABYLON.PhysicsImpostor(box21, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);    
+        	box22.physicsImpostor = new BABYLON.PhysicsImpostor(box22, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene); 
         	torus.physicsImpostor = new BABYLON.PhysicsImpostor(torus, BABYLON.PhysicsImpostor.MeshImpostor, { mass: 0, restitution: 0 }, scene);            
         	torus2.physicsImpostor = new BABYLON.PhysicsImpostor(torus2, BABYLON.PhysicsImpostor.MeshImpostor, { mass: 0, restitution: 0 }, scene);            
         	torus3.physicsImpostor = new BABYLON.PhysicsImpostor(torus3, BABYLON.PhysicsImpostor.MeshImpostor, { mass: 0, restitution: 0 }, scene);          
