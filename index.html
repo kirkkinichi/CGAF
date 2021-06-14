@@ -57,7 +57,7 @@
             var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
             light.intensity = 0.7;
             
-            var music = new BABYLON.Sound("Audio", "sounds/audio.mp3", scene, null, { loop: true, autoplay: true });
+            var music = new BABYLON.Sound("Audio", "sounds/audio.mp3", scene, null, { loop: true, autoplay: true, volume:0.5 });
 
             var skybox = BABYLON.MeshBuilder.CreateBox("skyBox", {size:1000.0}, scene);
             var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
